@@ -1,0 +1,13 @@
+<div class="duration-500 h-full w-20 border-r-2 shadow close" id="sidenav">
+    <div class="h-full flex flex-col mt-full">
+        <img src="" alt="profile picture">
+        <ul class="flex flex-col gap-3 items-center mt-5 text-center sidenav_menu mt-auto">
+            <li class="btn w-10"><a href="#" data-close="D" data-open="Dashboard">D</a></li>
+        </ul>
+        <ul class="flex flex-col gap-3 items-center mt-5 text-center sidenav_menu mt-auto mb-5">
+            <li class="btn w-10 bg-slate-500"><a href="/user/{{user.id}}/edit" data-close="S" data-open="Settings">S</a></li>
+            <li class="btn w-10 bg-red-500"><a href="/user/logout" data-close="L" data-open="Logout">L</a></li>
+        </ul>
+    </div>
+</div>
+
