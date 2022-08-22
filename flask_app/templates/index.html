@@ -1,158 +1,16 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="relative md:grid grid-cols-3 h-screen">
-    <div class="h-full col-span-2 border-r-2 border-black shadow bg-slate-500 z-10">
-        <img class="fixed md:relative top-0 h-screen w-full object-cover"
-            src="https://images.pexels.com/photos/5990710/pexels-photo-5990710.jpeg?cs=srgb&dl=pexels-cottonbro-5990710.jpg&fm=jpg"
-            alt="chores image">
+<div class="grid grid-cols-2 mt-10 gap-3">
+    <div class="border border-black w-fit justify-self-end  p-5">
+        {% include 'components/login.html' %}
     </div>
-    <div class="absolute md:relative top-0 left-0 md:flex flex-col w-full">
-        <div class="w-full">
-            <h1 class="text-4xl font-bold text-center">The Battle of the Cousins</h1>
-        </div>
-        <div class="h-full mt-[30%] flex flex-col">
-            <div class="ml-20">
-                <button class="btn md:w-96 duration-500 bg-slate-500 font-bold" id="loginReg-btn">Go To
-                    Register</button>
-            </div>
-            <div class="relative h-20 md:ml-14">
-                <form action="/user/login" method="post"
-                    class="z-0 md:w-96 bg-white border shadow rounded-lg absolute top-0 left-0 m-5 p-3 duration-500"
-                    id="login-form">
-                    <h3 class="font-bold">LOGIN</h3>
-                    <div class="mb-3 flex flex-col">
-                        <input req_len="3" class="input" type="text" name="username" id="username">
-                        <div class="text-sm text-center errDiv">
-                            <label class="lable text-center text-sm" for="username">Username OR Email</label>
-                            <span class="err"></span>
-                        </div>
-                    </div>
-                    <div class="mb-3 flex flex-col">
-                        <input req_len="3" class="input" type="text" name="pw" id="pw">
-                        <div class="text-sm text-center errDiv">
-                            <label class="lable text-center text-sm" for="pw">Password</label>
-                            <span class="err"></span>
-                        </div>
-                    </div>
-                    <div class="mb-3 flex gap-3 items-center">
-                        <input req_len="3" class="input" type="checkbox" name="remember-me" id="remember-me">
-                        <span>Remember Me</span>
-                    </div>
-                    <div class="mb-3 w-full">
-                        <button class="btn w-full bg-green-300 hover:bg-green-700 hover:text-white">Login</button>
-                    </div>
-                </form>
-                <form action="/user/create" method="post"
-                    class="md:w-96 bg-white border shadow rounded-lg m-5 p-3 absolute top-0 left-0 duration-500 translate-x-[-250%]"
-                    id="register-form">
-                    <h3 class="font-bold">REGISTER</h3>
-                    <div class="w-full flex justify-center mt-3 mb-1">
-                        <span class="text-xl font-bold">Who are you?</span>
-                    </div>
-                    <div class="mb-3 flex justify-evenly">
-                        <div>
-                            <input req_len="3" class="user_type input" type="radio" name="user_type" id="user_type"
-                                value="parent" checked>
-                            <span>Parent</span>
-                        </div>
-                        <div>
-                            <input req_len="3" class="user_type input" type="radio" name="user_type" id="user_type"
-                                value="child">
-                            <span>Child</span>
-                        </div>
-                    </div>
-                    <div class="grid grid-cols-2 gap-3 items-center justify-between h-16 relative">
-                        <div class="flex items-center gap-3" id="joining-family-checkbox">
-                            <input req_len="3" class="input" type="checkbox" name="join_family" id="join_family">
-                            <span>Joining a Family</span>
-                        </div>
-                        <div class="absolute top-0 right-0 mb-3 flex flex-col duration-500" id="family_name">
-                            <div class="text-sm text-center errDiv">
-                                <label class="lable text-center text-sm" for="family_name">Family Name</label>
-                                <span class="err"></span>
-                            </div>
-                            <input req_len="3" class="input" type="text" name="family_name" id="family_name">
-                        </div>
-                        <div class="absolute top-0 right-0 mb-3 flex flex-col scale-x-0 duration-500" id="family_code">
-                            <input req_len="3" class="input" type="text" name="family_code" id="family_code">
-                            <div class="text-sm text-center errDiv">
-                                <label class="lable text-center text-sm" for="family_code">Code</label>
-                                <span class="err"></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="mb-3 flex flex-col">
-                        <input req_len="3" class="input" type="text" name="first_name" id="first_name">
-                        <div class="text-sm text-center errDiv">
-                            <label class="lable text-center text-sm" for="first_name">First Name</label>
-                            <span class="err"></span>
-                        </div>
-                    </div>
-                    <div class="mb-3 flex flex-col">
-                        <input req_len="3" class="input" type="text" name="last_name" id="last_name">
-                        <div class="text-sm text-center errDiv">
-                            <label class="lable text-center text-sm" for="last_name">Last Name</label>
-                            <span class="err"></span>
-                        </div>
-                    </div>
-                    <div class="hidden" id="kid-form">
-                        <div class="mb-3 flex flex-col">
-                            <input req_len="3" class="input" type="text" name="username" id="username">
-                            <div class="text-sm text-center errDiv">
-                                <label class="lable text-center text-sm" for="username">Username</label>
-                                <span class="err"></span>
-                            </div>
-                        </div>
-                        <div class="mb-3 flex flex-col">
-                            <input req_len="3" class="input" type="number" name="pin" id="pin">
-                            <div class="text-sm text-center errDiv">
-                                <label class="lable text-center text-sm" for="pin">Pin Code</label>
-                                <span class="err"></span>
-                            </div>
-                        </div>
-                        <div class="mb-3 flex flex-col">
-                            <input req_len="3" class="input" type="number" name="confirm_pin" id="confirm_pin">
-                            <div class="text-sm text-center errDiv">
-                                <label class="lable text-center text-sm" for="confirm_pin">Confirm Pin Code</label>
-                                <span class="err"></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div id="parent-form">
-                    <div class="mb-3 flex flex-col reg-email">
-                        <input req_len="3" class="input" type="text" name="email" id="email">
-                        <div class="text-sm text-center errDiv">
-                            <label class="lable text-center text-sm" for="email">Email</label>
-                            <span class="err"></span>
-                        </div>
-                    </div>
-                        <div class="mb-3 flex flex-col">
-                            <input req_len="3" class="input" type="text" name="pw" id="pw">
-                            <div class="text-sm text-center errDiv">
-                                <label class="lable text-center text-sm" for="pw">Password</label>
-                                <span class="err"></span>
-                            </div>
-                        </div>
-                        <div class="mb-3 flex flex-col">
-                            <input req_len="3" class="input" type="text" name="confirm_pw" id="confirm_pw">
-                            <div class="text-sm text-center errDiv">
-                                <label class="lable text-center text-sm" for="confirm_pw">Confirm Password</label>
-                                <span class="err"></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="mb-3 w-full">
-                        <button class="btn w-full bg-green-300 hover:bg-green-700 hover:text-white">Register A New
-                            User</button>
-                    </div>
-                </form>
-            </div>
-        </div>
+    <div class="border border-black w-fit p-5">
+        {% include 'components/register.html' %}
     </div>
 </div>
 {% endblock content %}
 
 {% block js %}
-<script src="{{ url_for('static', filename='js/index.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/index.js') }}"></script>
 {% endblock js %}

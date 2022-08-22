@@ -1,0 +1,45 @@
+<form action="/user/create" method="post">
+    <div class="family-form">
+        <div class="flex flex-col">
+            <div class="mb-3">
+                <input type="checkbox" name="join_family" id="join_family_checkbox">
+                <label class="text-xs text-center" for="join_family">Join A Family</label>
+            </div>
+            <div class="relative h-16">
+                <div class="family_code flex flex-col absolute top-0 left-0 duration-500 scale-x-0 -z-10" id="family_code_div">
+                    <label class="text-xs text-center" for="family_code">Family Code</label>
+                    <input class="input" type="text" name="family_code" id="family_code">
+                </div>
+                <div class="family_name flex flex-col absolute top-0 left-0 duration-500 " id="family_name_div">
+                    <label class="text-xs text-center" for="family_name">Family Name</label>
+                    <input class="input" type="text" name="family_name" id="family_name">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="user-form">
+        <div class="mb-3 flex flex-col">
+            <label class="text-xs text-center" for="first_name">First Name</label>
+            <input class="input" type="text" name="first_name" id="first_name">
+        </div>
+        <div class="mb-3 flex flex-col">
+            <label class="text-xs text-center" for="last_name">Last Name</label>
+            <input class="input" type="text" name="last_name" id="last_name">
+        </div>
+        <div class="mb-3 flex flex-col">
+            <label class="text-xs text-center" for="email">Email</label>
+            <input class="input" type="text" name="email" id="email">
+        </div>
+        <div class="mb-3 flex flex-col">
+            <label class="text-xs text-center" for="pw">Password</label>
+            <input class="input" type="text" name="pw" id="pw">
+        </div>
+        <div class="mb-3 flex flex-col">
+            <label class="text-xs text-center" for="confirm_pw">Confirm Password</label>
+            <input class="input" type="text" name="confirm_pw" id="confirm_pw">
+        </div>
+    </div>
+    <div class="mb-3">
+        <button>Register</button>
+    </div>
+</form>

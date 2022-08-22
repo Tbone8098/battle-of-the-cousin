@@ -1,29 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+    <title>The Habit-Rabbit Adventure</title>
+
     <!-- tailwindcss -->
     <script src="https://cdn.tailwindcss.com"></script>
-
-    <!-- my css -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary1: '#028090',
+                        primary2: '#00A896',
+                        secondary1: '#05668D',
+                        secondary2: '#02C39A',
+                    }
+                }
+            }
+        }
+    </script>
+    {% include 'components/styles.html' %}
+    <!-- css -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-    {% block css %}
-        
-    {% endblock css %}
-
-    <title>Battle of the Cousins</title>
 </head>
+
 <body>
     {% block content %}
-        
+
     {% endblock content %}
 
+
+    <!-- js -->
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
     {% block js %}
-        
+
     {% endblock js %}
 </body>
+
 </html>

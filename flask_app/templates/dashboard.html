@@ -1,46 +1,8 @@
 {% extends 'base.html' %}
-{{ user }}
-{% set info = user.user_info %}
-{% set family = info.family_with_members %}
 
 {% block content %}
-<div class="flex h-screen">
-    <div class="w-42">
-        {% include 'components/sidenav.html' %}
-    </div>
-    <div class="w-full ml-3" id="main">
-        <div>
-            <h1 class="text-4xl">Welcome {{ info.fullname }}</h1>
-            <p>Family Code: {{ family.code }}</p>
-        </div>
-        <div class="grid grid-cols-6">
-            <div>
-                <h2 class="text-xl">Family Members</h2>
-                <table class="table-fixed">
-                    <tbody>
-                        {% for member in family.members %}
-                        <tr class="">
-                            <td>{{ member.fullname }}</td>
-                            {% if member.is_parent %}
-                            <td>( Parent )</td>
-                            {% else %}
-                            <td>( kid )</td>
-                            {% endif %}
-                            {% if info.is_parent %}
-                            {% if not member.is_parent %}
-                            <td>
-                                <a href="#" class="btn bg-yellow-200 hover:bg-yellow-500">View</a>
-                            </td>
-                            {% else %}
-                            <td></td>
-                            {% endif %}
-                            {% endif %}
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
+<div>
+    <a href="/user/logout">Logout</a>
+    <h1 class="text-4xl">Dashboard</h1>
 </div>
 {% endblock content %}
