@@ -12,7 +12,10 @@ def index():
 def dashboard():
     if 'uuid' not in session:
         return redirect('/')
-    return render_template('dashboard.html')
+    context = {
+        'user': model_user.User.get_one(id=session['uuid'])
+    }
+    return render_template('dashboard.html', **context)
 
 
 @app.route('/<path:path>')

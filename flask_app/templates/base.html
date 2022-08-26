@@ -26,15 +26,37 @@
     {% include 'components/styles.html' %}
     <!-- css -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/modal.css') }}"> -->
 </head>
 
-<body>
+<body class="bg-primary1">
+    {% if request.path != '/' %}
+        {% include 'components/navbar.html' %}
+    {% endif %}
     {% block content %}
 
     {% endblock content %}
 
+    {% macro modal_macro(title, content, modal_name) %}
+    <div class="modal_wrapper hidden absolute top-0 left-0 flex justify-center items-center w-full h-full backdrop-blur-sm duration-500" id="{{modal_name}}">
+        <div class="modal_container border border-black rounded-lg shadow shadow-black bg-white w-7/12 h-5/6">
+            <div class="modal_title flex justify-between p-5 bg-primary1 rounded-t-md">
+                <h2 class="text-2xl">{{ title }}</h2>
+                <span class="close-btn m-0 flex items-center cursor-pointer hover:text-red-500 hover:font-bold hover:bg-white hover:rounded hover:shadow hover:px-1">Close</span>
+            </div>
+            <div class="modal_content">
+                {{ content }}
+            </div>
+        </div>
+    </div>
+    {% endmacro %}
+
+    {% block modals %}
+        
+    {% endblock modals %}
 
     <!-- js -->
+    <script src="{{ url_for('static', filename='js/modal.js') }}"></script>
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
     {% block js %}
 

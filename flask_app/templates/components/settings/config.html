@@ -1,0 +1,37 @@
+{% set all_categories = family.get_categories %}
+
+<div>
+    <h2 class="text-2xl font-bold text-center">Config</h2>
+    <div class="grid grid-cols-2 p-2 gap-3">
+        <div>
+            <h2 class="text-xl text-center">Create A New Category</h2>
+            {% include 'components/forms/category_create.html' %}
+        </div>
+        <div>
+            <h2 class="text-xl text-center">All Categories</h2>
+            {% if not all_categories %}
+                <p class="text-center">You do not have any categories yet</p>
+            {% else %}
+            <table class="table w-full mt-4">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody class="text-center">
+                    {% for category in all_categories %}
+                        <tr>
+                            <td>{{ category.name }}</td>
+                            <td>
+                                <!-- <a class="btn btn-danger" href="/category/{{category.id}}/delete">Delete</a> -->
+                                <span class="btn btn-util">Edit</span>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% endif %}
+        </div>
+    </div>
+</div>

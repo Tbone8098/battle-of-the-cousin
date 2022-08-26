@@ -1,6 +1,7 @@
 from flask_app.config.mysqlconnection import connectToMySQL
-from flask import flash
-from flask_app.models import model_base
+from flask import flash, session
+from flask_app.models import model_base, model_category
+from flask_app.models.users import model_user
 from flask_app import DATABASE_SCHEMA
 import random
 
@@ -11,7 +12,22 @@ class Family(model_base.base_model):
     def __init__(self, data):
         super().__init__(data)
         self.code = data['code']
-        self.user_id = data['user_id']
+        self.name = data['name']
+
+    @property
+    def get_categories(self):
+        return model_category.Category.get_all(where=True, family_id=session['family_id'])
+    
+    @property
+    def get_members(self):
+        query = f"SELECT * FROM users WHERE users.family_id = {self.id}"
+        results = connectToMySQL(DATABASE_SCHEMA).query_db(query)
+        if not results:
+            return []
+        members = []
+        for dict in results:
+            members.append( model_user.User(dict) )
+        return members
 
     @classmethod
     def create(cls, **data):
@@ -20,7 +36,9 @@ class Family(model_base.base_model):
             'code': family_code,
             'name': data['family_name'],
         }
-        return super().create(**dict)
+        family_id = super().create(**dict)
+        session['family_id'] = family_id
+        return family_id
 
     @staticmethod
     def gen_code():

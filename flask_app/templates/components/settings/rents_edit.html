@@ -1,0 +1,18 @@
+<h2 class="text-2xl font-bold text-center">Update User Information</h2>
+<form class="p-8 flex flex-col" action="/user/{{ user.id }}/update" method="post">
+    <div class="mb-3 flex flex-col">
+        <label class="text-xs text-center" for="first_name">First Name</label>
+        <input type="text" name="first_name" id="first_name" value="{{user.first_name}}">
+    </div>
+    <div class="mb-3 flex flex-col">
+        <label class="text-xs text-center" for="last_name">Last Name</label>
+        <input type="text" name="last_name" id="last_name" value="{{ user.last_name }}">
+    </div>
+    <div class="mb-3 flex flex-col">
+        <label class="text-xs text-center" for="email">Email</label>
+        <input type="text" name="email" id="email" value="{{ user.email }}">
+    </div>
+    <div class="mb-3 self-end">
+        <button class="btn btn-success">Update</button>
+    </div>
+</form>

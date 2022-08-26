@@ -1,0 +1,18 @@
+<h2 class="text-2xl font-bold text-center">Update Password</h2>
+<form class="flex flex-col p-8" action="/user/{{ user.id }}/update" method="post">
+    <div class="mb-3 flex flex-col">
+        <label class="text-xs text-center" for="old_pw">Old Password</label>
+        <input type="text" name="old_pw" id="old_pw">
+    </div>
+    <div class="mb-3 flex flex-col">
+        <label class="text-xs text-center" for="pw">Last Name</label>
+        <input type="text" name="pw" id="pw">
+    </div>
+    <div class="mb-3 flex flex-col">
+        <label class="text-xs text-center" for="confirm_pw">Confirm Password</label>
+        <input type="text" name="confirm_pw" id="confirm_pw">
+    </div>
+    <div class="mb-3 self-end">
+        <button class="btn btn-success">Update</button>
+    </div>
+</form>

@@ -1,0 +1,29 @@
+<h2 class="text-xl font-bold text-center text-2xl">Family Members</h2>
+<div class="flex gap-3">
+    <table class="w-full table">
+        <thead>
+            <tr class="text-white">
+                <th>Name</th>
+                <th>Role</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for member in all_members %}
+            <tr class="text-center">
+                <td>{{ member.fullname }}</td>
+                {% if member.level == 1 %}
+                <td>Rent</td>
+                {% else %}
+                <td>Kiddo</td>
+                {% endif %}
+                <td>
+                    {% if member.level != 1 %}
+                    <a href="" class="btn btn-util border-black border">Edit</a>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>

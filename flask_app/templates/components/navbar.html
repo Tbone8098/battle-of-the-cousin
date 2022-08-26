@@ -1,0 +1,27 @@
+{% set family = user.family  %}
+{% set page = request.path %}
+
+<nav class="border-b-2 pb-2 bg-white">
+    <div class="grid grid-cols-3 items-center mx-3 pt-5">
+        <div>
+            <h2 class="text-xl">Welcome {{ user.fullname }}</h2>
+            <p>Family Code: <span>{{ family.code }}</span></p>
+        </div>
+        <div>
+            <h1 class="text-4xl text-center">Habit Rabbit</h1>
+        </div>
+        <div class="justify-self-end">
+            <a href="/user/logout" class="btn btn-danger">Logout</a>
+        </div>
+    </div>
+    <div class="mt-5 flex mx-3">
+        <ul class="w-full flex justify-evenly">
+            {% if page != '/dashboard' %}
+            <li class="hover:text-green-500 hover:scale-125 duration-300"><a href="/">Dashboard</a></li>
+            {% endif %}
+            <li class="hover:text-green-500 hover:scale-125 duration-300"><a href="/">Find Family</a></li>
+            <li class="hover:text-green-500 hover:scale-125 duration-300"><a href="/user/{{ user.id }}">Settings</a></li>
+        </ul>
+        <span>🔼</span>
+    </div>
+</nav>

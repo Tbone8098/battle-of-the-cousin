@@ -1,0 +1,13 @@
+{% macro modal_macro(title, content) %}
+<div class="modal_wrapper">
+    <div class="modal_container">
+        <div class="modal_title">
+            <h2 class="text-2xl">{{ title }}</h2>
+            <span class="close-btn">Close</span>
+        </div>
+        <div class="modal_content">
+            {{ content }}
+        </div>
+    </div>
+</div>
+{% endmacro %}

@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% set family = user.family %}
+{% set all_members = family.get_members %}
+
+{% block content %}
+<div>
+    <h1 class="text-4xl text-center">Settings</h1>
+</div>
+<div class="grid grid-cols-4 gap-3 p-8">
+    <div class="flex flex-col gap-3 bg-white border shadow rounded p-8">
+        <button class="btn-add-kiddo btn-util">Add Kiddo</button>
+        <div class="scale-y-0 duration-500">
+            <div class="hidden section-add-kiddo">
+                {% include 'components/settings/kiddo_add.html' %}
+            </div>
+        </div>
+        <div>
+            {% include 'components/settings/kiddo_show_list.html' %}
+        </div>
+    </div>
+    <div class="col-span-2 bg-white border rounded shadow">
+        <div class="w-full">
+            <ul class="flex justify-evenly gap-3">
+                <li><span class="link {{'underline' if subpage == 'chore_settings' else ''}}" link-to="user_config">Chore Settings</span></li>
+                <li><span class="link {{'underline' if subpage == 'user_settings' else ''}}" link-to="user_info">User Settings</span></li>
+            </ul>
+        </div>
+        <div class="subpage {{'hidden' if subpage != 'user_settings' else ''}} grid grid-cols-2" id="user_info">
+            <div class="border shadow rounded m-3">
+                {% include 'components/settings/rents_edit.html' %}
+            </div>
+            <div class="border shadow rounded m-3" id="user_info">
+                <div>
+                    {% include 'components/settings/rents_pw_edit.html' %}
+                </div>
+            </div>
+        </div>
+        <div class="subpage {{'hidden' if subpage != 'chore_settings' else ''}}" id="user_config">
+            {% include 'components/settings/config.html' %}
+        </div>
+    </div>
+    <div class="bg-white rounded border shadow p-3">
+        {% include 'components/settings/chores_list.html' %}
+    </div>
+</div>
+
+{% endblock content %}
+
+{% block modals %}
+{{ modal_macro('test', 'this is a test', 'add_chore_modal') }}
+{% endblock modals %}
+
+{% block js %}
+    <script src="{{ url_for('static', filename='js/link.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/settings.js') }}"></script>
+{% endblock js %}

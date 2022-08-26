@@ -13,9 +13,10 @@ class Kiddo(model_base.base_model):
     # Validator
     @staticmethod
     def validation(data):
-        errors = {}
+        is_valid = True
 
-        if len(data['column name']) < 1: 
-            errors['Kiddo_column name'] = 'column nameis required'
+        if len(data['battlename']) < 1: 
+            is_valid = False
+            print('battlename is required')
         
-        return errors
+        return is_valid
