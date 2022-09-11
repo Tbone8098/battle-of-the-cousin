@@ -1,23 +1,46 @@
-<h2 class="text-2xl font-bold">Chore List</h2>
+
+<div class="flex justify-between items-center mb-3">
+    <h2 class="text-2xl font-bold">Chore List</h2>
+    <span class="btn btn-util modal-btn cursor-pointer" modal_name="add_chore_modal">Add Chore</span>
+</div>
 <div class="flex flex-col gap-3">
     {% for member in all_members %}
     {% if member.level != 1 %}
     <div class="border rounded p-3">
         <div class="flex justify-between items-center my-2">
             <h3 class="text-xl">{{ member.fullname }}</h3>
-            <span class="btn btn-util modal-btn cursor-pointer" modal_name="add_chore_modal">Add Chore</span>
         </div>
         <table class="table w-full">
             <thead>
                 <tr>
                     <th>Name</th>
-                    <th>Description</th>
                     <th>Category</th>
+                    <th>Days</th>
                     <th>Action</th>
                 </tr>
             </thead>
             <tbody>
-    
+                {% for chore in member.get_user_type.chores %}
+                <tr class="text-center">
+                    <td>{{ chore.title }}</td>
+                    <td>{{ chore.get_category.name }}</td>
+                    <td>
+                        <div class="flex justify-center gap-1">
+                            {% set days = ['Su', 'M', 'T', 'W', 'TH', 'F', 'S'] %}
+                            {% set chore_days = chore.get_days %}
+                            {% for day in days %}
+                            {% if day in chore_days.abv %}
+                            <div class="box w-8 border border-black shadow p-1 bg-blue-500">{{ day }}</div>
+                            {% else %}
+                            <div class="box w-8 border border-black shadow p-1">{{ day }}</div>
+                            {% endif %}
+                            {% endfor %}
+                            
+                        </div>
+                    </td>
+                    <td><a class="btn btn-util" href="">Edit</a></td>
+                </tr>
+                {% endfor %}
             </tbody>
         </table>
     </div>

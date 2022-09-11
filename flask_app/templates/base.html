@@ -45,7 +45,7 @@
                 <span class="close-btn m-0 flex items-center cursor-pointer hover:text-red-500 hover:font-bold hover:bg-white hover:rounded hover:shadow hover:px-1">Close</span>
             </div>
             <div class="modal_content">
-                {{ content }}
+                {% include content + '.html' %}
             </div>
         </div>
     </div>

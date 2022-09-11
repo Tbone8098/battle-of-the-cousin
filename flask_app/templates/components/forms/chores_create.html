@@ -1,7 +1,76 @@
+{% set all_categories = family.get_categories  %}
 
-
-<form action="/chore/create" method="post">
-    <div class="mb-3">
-        
+<form class="w-full p-8" action="/chore/create" method="post">
+    <div class="grid grid-cols-2 gap-3 w-full">
+        <div class="mb-3 flex flex-col gap-2">
+            <label for="category_id" class="text-xs text-center">Category</label>
+            <select class="input" name="category_id" id="category_id">
+                {% for category in all_categories %}
+                    <option value="{{ category.id }}">{{ category.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="mb-3 flex flex-col gap-2">
+            <label for="kiddo_id" class="text-xs text-center">Kiddo</label>
+            <select class="input" name="kiddo_id" id="kiddo_id">
+                {% for member in all_members %}
+                {% if member.level == 0 %}
+                <option value="{{ member.get_user_type.id }}">{{ member.fullname }}</option>
+                {% endif %}
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+    <div class="mb-3 flex flex-col">
+        <label for="title" class="text-xs text-center">Chore Title</label>
+        <input type="text" name="title" id="title">
+    </div>
+    <div class="mb-3 flex flex-col">
+        <label for="title" class="text-xs text-center">Chore Description</label>
+        <textarea class="h-44" name="description" id="description" cols="30" rows="10"></textarea>
+    </div>
+    <div class="my-3">
+        <p class="text-center my-3">What days of the week is this chore to be done on?</p>
+        <div class="flex gap-3 justify-evenly">
+            <div class="flex flex-col justify-center">
+                <label class="text-xs text-center" for="sunday">Sunday</label>
+                <input type="checkbox" name="sunday" id="sunday">
+            </div>
+            <div class="flex flex-col justify-center">
+                <label class="text-xs text-center" for="monday">Monday</label>
+                <input type="checkbox" name="monday" id="monday">
+            </div>
+            <div class="flex flex-col justify-center">
+                <label class="text-xs text-center" for="tuesday">Tuesday</label>
+                <input type="checkbox" name="tuesday" id="tuesday">
+            </div>
+            <div class="flex flex-col justify-center">
+                <label class="text-xs text-center" for="wednesday">Wednesday</label>
+                <input type="checkbox" name="wednesday" id="wednesday">
+            </div>
+            <div class="flex flex-col justify-center">
+                <label class="text-xs text-center" for="thursday">Thursday</label>
+                <input type="checkbox" name="thursday" id="thursday">
+            </div>
+            <div class="flex flex-col justify-center">
+                <label class="text-xs text-center" for="friday">Friday</label>
+                <input type="checkbox" name="friday" id="friday">
+            </div>
+            <div class="flex flex-col justify-center">
+                <label class="text-xs text-center" for="saturday">Saturday</label>
+                <input type="checkbox" name="saturday" id="saturday">
+            </div>
+        </div>
+    </div>
+    <div class="mb-3 grid grid-cols-2 gap-3 items-center">
+        <div class="mb-3 flex flex-col">
+            <label for="title" class="text-xs text-center">Chore Description</label>
+            <select class="input" name="difficulty_id" id="difficulty_id">
+                {% for difficulty in all_difficulties %}
+                <option value="{{ difficulty.id }}">{{ difficulty.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <button class="btn btn-success">Add Chore</button>
     </div>
 </form>

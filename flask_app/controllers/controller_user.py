@@ -2,6 +2,7 @@ from flask_app import app, bcrypt
 from flask import render_template, redirect, session, request
 
 from flask_app.models.users import model_user, model_family, model_rent, model_kiddo
+from flask_app.models import model_difficulty
 
 @app.route('/user/new')          
 def user_new():
@@ -39,6 +40,7 @@ def user_create():
 def user_show(id, subpage = 'chore_settings'):
     context = {
         'user': model_user.User.get_one(id=session['uuid']),
+        'all_difficulties': model_difficulty.Difficulty.get_all(),
         'subpage': subpage
     }
     return render_template('user_show.html', **context)

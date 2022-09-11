@@ -18,8 +18,11 @@ class User(model_base.base_model):
         self.fullname = f"{self.first_name.capitalize()} {self.last_name.capitalize()}"
 
     @property
-    def get_user(self):
-        return self.get_one(id = self.id)
+    def get_user_type(self):
+        if self.level == 0:
+            return model_kiddo.Kiddo.get_one_by_user_id_with_chores(user_id = self.id)
+        else:
+            return model_rent.Rent.get_one(user_id = self.id)
 
     @property
     def family(self):

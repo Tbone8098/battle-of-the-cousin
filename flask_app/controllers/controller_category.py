@@ -16,7 +16,7 @@ def category_create():
     }
     model_category.Category.create(**data)
     user_id = session['uuid']
-    return redirect(f'/user/{user_id}/config')
+    return redirect(f'/user/{user_id}/chore_settings')
 
 @app.route('/category/<int:id>')          
 def category_show(id):

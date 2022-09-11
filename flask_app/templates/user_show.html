@@ -18,14 +18,17 @@
             {% include 'components/settings/kiddo_show_list.html' %}
         </div>
     </div>
-    <div class="col-span-2 bg-white border rounded shadow">
+    <div class="col-span-2 bg-white rounded border shadow p-3">
+        {% include 'components/settings/chores_list.html' %}
+    </div>
+    <div class="bg-white border rounded shadow flex flex-col gap-3">
         <div class="w-full">
             <ul class="flex justify-evenly gap-3">
                 <li><span class="link {{'underline' if subpage == 'chore_settings' else ''}}" link-to="user_config">Chore Settings</span></li>
                 <li><span class="link {{'underline' if subpage == 'user_settings' else ''}}" link-to="user_info">User Settings</span></li>
             </ul>
         </div>
-        <div class="subpage {{'hidden' if subpage != 'user_settings' else ''}} grid grid-cols-2" id="user_info">
+        <div class="subpage {{'hidden' if subpage != 'user_settings' else ''}} flex flex-col gap-3" id="user_info">
             <div class="border shadow rounded m-3">
                 {% include 'components/settings/rents_edit.html' %}
             </div>
@@ -39,15 +42,12 @@
             {% include 'components/settings/config.html' %}
         </div>
     </div>
-    <div class="bg-white rounded border shadow p-3">
-        {% include 'components/settings/chores_list.html' %}
-    </div>
 </div>
 
 {% endblock content %}
 
 {% block modals %}
-{{ modal_macro('test', 'this is a test', 'add_chore_modal') }}
+{{ modal_macro('test', 'components/forms/chores_create', 'add_chore_modal') }}
 {% endblock modals %}
 
 {% block js %}

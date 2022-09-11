@@ -4,9 +4,7 @@ from flask_app.models import model_base
 from flask_app import DATABASE_SCHEMA
 import re
 
-class Category(model_base.base_model):
-    table = 'categories'
+class Chores_has_days(model_base.base_model):
+    table = 'chores_has_days'
     def __init__(self, data):
         super().__init__(data)
-        self.name = data['name']
-        self.family_id = data['family_id']
